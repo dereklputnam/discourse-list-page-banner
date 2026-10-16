@@ -16,6 +16,24 @@ export function findBanner(url, banners = settings.list_banners) {
   );
 }
 
+// Builds what the banner shows: the row's own title and description when set,
+// otherwise the name and description of the list in Custom Topic Lists.
+export function resolveBanner(url, banners, lists) {
+  const row = findBanner(url, banners);
+  if (!row) {
+    return;
+  }
+
+  const slug = row.slug.trim().toLowerCase();
+  const list = (lists || []).find((l) => l.slug?.trim().toLowerCase() === slug);
+
+  return {
+    title: row.title || list?.name || row.slug,
+    description: row.description || list?.description,
+    color: row.color,
+  };
+}
+
 // Only hex values and plain color names are accepted, so the value is safe to
 // place in a style attribute. Anything else falls back to the default accent.
 export function safeColor(value) {

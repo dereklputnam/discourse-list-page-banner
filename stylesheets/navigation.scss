@@ -1,0 +1,4 @@
+// List pages stand alone: the category, tag and latest/new/top bar would leave the list
+.hides-list-navigation.is-custom-list-page .list-controls {
+  display: none;
+}

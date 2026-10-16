@@ -14,14 +14,18 @@ It started from [netwrix-modifications-for-solutions](https://github.com/dereklp
 
 One row per list that should show a banner.
 
-| Field        | Description                                                                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field        | Description                                                                                                                                       | Optional. Defaults to the list's description in Custom Topic Lists. |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | List slug    | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case.                                  |
-| Title        | Heading shown in the banner.                                                                                                                      |
-| Description  | Optional text under the title.                                                                                                                    |
+| Title        | Optional. Defaults to the list's name in Custom Topic Lists.                                                                                      |
+| Description  | Optional. Defaults to the list's description in Custom Topic Lists.                                                                               |
 | Accent color | Optional color of the banner's top border: a hex value like `#BF1E2E` or a color name. Defaults to the theme accent color, like category banners. |
 
-A list with a banner shows it in place of the plugin's own title header, which is hidden on that page. Lists themselves, including which topics they show, stay managed in Custom Topic Lists.
+The banner reads the list's name and description from Custom Topic Lists, so they only need to be set there. A list with a banner shows it in place of the plugin's own title header, which is hidden on that page. Lists themselves, including which topics they show, stay managed in Custom Topic Lists.
+
+### `hide_list_navigation`
+
+Hides the category, tag and latest/new/top navigation bar on list pages, so each list stands on its own. On by default.
 
 ### `hide_custom_lists_dropdown`
 

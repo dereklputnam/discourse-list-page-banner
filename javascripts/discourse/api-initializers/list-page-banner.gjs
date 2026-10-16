@@ -10,6 +10,11 @@ export default apiInitializer((api) => {
     !!settings.hide_custom_lists_dropdown
   );
 
+  document.body.classList.toggle(
+    "hides-list-navigation",
+    !!settings.hide_list_navigation
+  );
+
   api.onPageChange((url) => {
     document.body.classList.toggle(
       "is-custom-list-page",

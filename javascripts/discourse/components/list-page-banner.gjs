@@ -1,13 +1,18 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import { trustHTML } from "@ember/template";
-import { findBanner, safeColor } from "../lib/list-banner";
+import { resolveBanner, safeColor } from "../lib/list-banner";
 
 export default class ListPageBanner extends Component {
   @service router;
+  @service site;
 
   get banner() {
-    return findBanner(this.router.currentURL);
+    return resolveBanner(
+      this.router.currentURL,
+      settings.list_banners,
+      this.site.custom_topic_lists
+    );
   }
 
   get style() {

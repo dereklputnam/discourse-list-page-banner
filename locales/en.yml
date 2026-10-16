@@ -3,8 +3,9 @@ en:
     description: Adds a banner to pages created with Discourse Custom Topic Lists and can hide the Custom Lists dropdown elsewhere
     settings:
       hide_custom_lists_dropdown: "Hide the Custom Lists dropdown in the navigation breadcrumb everywhere except on list pages (/lists/...)."
+      hide_list_navigation: "Hide the category, tag and latest/new/top navigation bar on list pages, so each list stands on its own."
       list_banners:
-        description: "Lists themselves are created and managed with Discourse Custom Topic Lists (https://meta.discourse.org/t/discourse-custom-topic-lists/311186). Add a row for each list that should show a banner. A list with a banner shows it in place of the plugin's own title header."
+        description: "Lists themselves are created and managed with Discourse Custom Topic Lists (https://meta.discourse.org/t/discourse-custom-topic-lists/311186). Add a row for each list that should show a banner. The banner takes its title and description from the list in Custom Topic Lists unless a row sets its own. A list with a banner shows it in place of the plugin's own title header."
         schema:
           properties:
             slug:
@@ -12,10 +13,10 @@ en:
               description: "The slug of the list as set in Custom Topic Lists, e.g. events for /lists/events"
             title:
               label: "Title"
-              description: "Heading shown in the banner"
+              description: "Optional. Defaults to the list's name in Custom Topic Lists."
             description:
               label: "Description"
-              description: "Optional text under the title"
+              description: "Optional. Defaults to the list's description in Custom Topic Lists."
             color:
               label: "Accent color"
               description: "Optional color of the banner's top border, as a hex value like #BF1E2E or a color name. Defaults to the theme's accent color, like category banners."

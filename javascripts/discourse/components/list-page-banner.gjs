@@ -31,6 +31,16 @@ export default class ListPageBanner extends Component {
               {{this.banner.title}}
             </h1>
           </div>
+          {{#if this.banner.buttons.length}}
+            <div class="list-page-banner__buttons custom-banner__buttons">
+              {{#each this.banner.buttons as |button|}}
+                <a
+                  class="btn btn-default"
+                  href={{button.url}}
+                >{{button.text}}</a>
+              {{/each}}
+            </div>
+          {{/if}}
           {{#if this.banner.description}}
             <div class="list-page-banner__details custom-banner__details">
               <DCookText @rawText={{this.banner.description}} />

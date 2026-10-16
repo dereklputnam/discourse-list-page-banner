@@ -14,11 +14,12 @@ It started from [netwrix-modifications-for-solutions](https://github.com/dereklp
 
 One row per list that should show a banner.
 
-| Field               | Description                                                                                                                |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| List slug           | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case.           |
-| Accent color        | Optional color of the banner's top border: a hex value like `#BF1E2E` or a color name. Defaults to the theme accent color. |
-| Hide navigation bar | Optional checkbox. Hides the category, tag and latest/new/top bar on this list page, so the list stands on its own.        |
+| Field               | Description                                                                                                                                                                                                                   |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| List slug           | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case.                                                                                                              |
+| Accent color        | Optional color of the banner's top border: a hex value like `#BF1E2E` or a color name. Defaults to the theme accent color.                                                                                                    |
+| Buttons             | Optional buttons in the banner, each with a text and a URL. They look like the primary buttons on category banners. A URL must be a full `http(s)://` link or a path on this site such as `/t/123`; anything else is dropped. |
+| Hide navigation bar | Optional checkbox. Hides the category, tag and latest/new/top bar on this list page, so the list stands on its own.                                                                                                           |
 
 The banner's title and description come from the list in Custom Topic Lists, so they only need to be set there. A list with a banner shows it in place of the plugin's own title header, which is hidden on that page. Lists themselves, including which topics they show, stay managed in Custom Topic Lists.
 

@@ -4,6 +4,7 @@ import {
   isCustomListPage,
   resolveBanner,
   safeColor,
+  safeUrl,
 } from "../../../discourse/lib/list-banner";
 
 module("Unit | Lib | list-banner", function () {
@@ -63,7 +64,12 @@ module("Unit | Lib | list-banner", function () {
 
     assert.deepEqual(
       resolveBanner("/lists/events", [{ slug: "events", color: "red" }], lists),
-      { title: "Events", description: "From the plugin", color: "red" }
+      {
+        title: "Events",
+        description: "From the plugin",
+        color: "red",
+        buttons: [],
+      }
     );
     assert.strictEqual(resolveBanner("/lists/events", [], lists), undefined);
     assert.strictEqual(
@@ -71,4 +77,47 @@ module("Unit | Lib | list-banner", function () {
       "events"
     );
   });
+
+  /* eslint-disable no-script-url */
+  test("safeUrl allows http(s) links and site paths only", function (assert) {
+    assert.strictEqual(
+      safeUrl("https://docs.netwrix.com/x"),
+      "https://docs.netwrix.com/x"
+    );
+    assert.strictEqual(safeUrl(" /t/123 "), "/t/123");
+    assert.strictEqual(safeUrl("javascript:alert(1)"), null);
+    assert.strictEqual(safeUrl("//evil.example.com"), null);
+    assert.strictEqual(safeUrl("data:text/html,x"), null);
+    assert.strictEqual(safeUrl("docs"), null);
+    assert.strictEqual(safeUrl(""), null);
+    assert.strictEqual(safeUrl(undefined), null);
+  });
+
+  test("resolveBanner keeps only buttons with text and a safe URL", function (assert) {
+    const banner = resolveBanner(
+      "/lists/events",
+      [
+        {
+          slug: "events",
+          buttons: [
+            { text: "Docs", url: "https://docs.netwrix.com" },
+            { text: "Bad", url: "javascript:alert(1)" },
+            { text: "", url: "/t/1" },
+            { text: "Post", url: "/t/123" },
+          ],
+        },
+      ],
+      []
+    );
+
+    assert.deepEqual(banner.buttons, [
+      { text: "Docs", url: "https://docs.netwrix.com" },
+      { text: "Post", url: "/t/123" },
+    ]);
+    assert.deepEqual(
+      resolveBanner("/lists/events", [{ slug: "events" }], []).buttons,
+      []
+    );
+  });
+  /* eslint-enable no-script-url */
 });

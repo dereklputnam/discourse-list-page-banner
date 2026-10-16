@@ -13,6 +13,13 @@ en:
             color:
               label: "Accent color"
               description: "Optional color of the banner's top border, as a hex value like #BF1E2E or a color name. Defaults to the theme's accent color, like category banners."
+            buttons:
+              text:
+                label: "Text"
+                description: "Button text"
+              url:
+                label: "URL"
+                description: "A full https:// link, or a path on this site such as /t/123"
             hide_navigation:
               label: "Hide navigation bar"
               description: "Hide the category, tag and latest/new/top bar on this list page, so the list stands on its own."

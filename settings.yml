@@ -17,3 +17,19 @@ list_banners:
         type: string
       hide_navigation:
         type: boolean
+      buttons:
+        type: objects
+        schema:
+          name: button
+          identifier: text
+          properties:
+            text:
+              type: string
+              required: true
+              validations:
+                min_length: 1
+            url:
+              type: string
+              required: true
+              validations:
+                min_length: 1

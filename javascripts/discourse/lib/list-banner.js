@@ -16,6 +16,13 @@ export function findBanner(url, banners = settings.list_banners) {
   );
 }
 
+// Button links may point at this site or another one. Anything that is not an
+// http(s) URL or a path on this site, such as javascript:, is dropped.
+export function safeUrl(value) {
+  const url = (value || "").trim();
+  return /^(https?:\/\/|\/(?!\/))/i.test(url) ? url : null;
+}
+
 // Builds what the banner shows. The title and description come from the list in
 // Custom Topic Lists; the row only adds the accent color.
 export function resolveBanner(url, banners, lists) {
@@ -31,6 +38,10 @@ export function resolveBanner(url, banners, lists) {
     title: list?.name || row.slug,
     description: list?.description,
     color: row.color,
+    buttons: (row.buttons || []).flatMap((button) => {
+      const href = safeUrl(button.url);
+      return href && button.text ? [{ text: button.text, url: href }] : [];
+    }),
   };
 }
 

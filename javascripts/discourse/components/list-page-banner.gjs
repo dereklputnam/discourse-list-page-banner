@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import { trustHTML } from "@ember/template";
+import DCookText from "discourse/ui-kit/d-cook-text";
 import { resolveBanner, safeColor } from "../lib/list-banner";
 
 export default class ListPageBanner extends Component {
@@ -32,7 +33,7 @@ export default class ListPageBanner extends Component {
           </div>
           {{#if this.banner.description}}
             <div class="list-page-banner__details custom-banner__details">
-              {{this.banner.description}}
+              <DCookText @rawText={{this.banner.description}} />
             </div>
           {{/if}}
         </div>

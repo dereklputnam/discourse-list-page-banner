@@ -34,6 +34,11 @@
     padding: 1em;
     background-color: var(--primary-very-low);
     border-radius: var(--d-border-radius);
+
+    // The description is cooked markdown, so its last paragraph has no extra gap
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 

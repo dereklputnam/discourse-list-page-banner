@@ -29,7 +29,7 @@ Hides the Custom Lists dropdown in the navigation breadcrumb everywhere except o
 
 ## How it works
 
-- The banner renders in the `above-main-container-outlet` and only appears when the current URL is `/lists/<slug>` for a row in `list_banners`.
+- The banner renders in the `above-main-container` outlet and only appears when the current URL is `/lists/<slug>` for a row in `list_banners`.
 - Body classes drive the CSS: `is-custom-list-page` on any `/lists/` page and `has-list-page-banner` on pages with a banner.
 - The banner's look follows the tag page banners on the community: centered title in a padded box with a colored top border.
 

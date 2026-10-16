@@ -3,7 +3,7 @@ import ListPageBanner from "../components/list-page-banner";
 import { findBanner, isCustomListPage } from "../lib/list-banner";
 
 export default apiInitializer((api) => {
-  api.renderInOutlet("above-main-container-outlet", ListPageBanner);
+  api.renderInOutlet("above-main-container", ListPageBanner);
 
   document.body.classList.toggle(
     "hides-custom-lists-dropdown",

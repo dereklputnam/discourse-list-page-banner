@@ -20,6 +20,9 @@ en:
               url:
                 label: "URL"
                 description: "A full https:// link, or a path on this site such as /t/123"
+            thumbnails:
+              label: "Thumbnails"
+              description: "Layout from the Topic List Thumbnails theme for this list. Choose default to use that theme's own settings. Needs that theme installed."
             hide_navigation:
               label: "Hide navigation bar"
               description: "Hide the category, tag and latest/new/top bar on this list page, so the list stands on its own."

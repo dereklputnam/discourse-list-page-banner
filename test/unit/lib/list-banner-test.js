@@ -1,10 +1,12 @@
 import { module, test } from "qunit";
 import {
   findBanner,
+  findBannerBySlug,
   isCustomListPage,
   resolveBanner,
   safeColor,
   safeUrl,
+  thumbnailMode,
 } from "../../../discourse/lib/list-banner";
 
 module("Unit | Lib | list-banner", function () {
@@ -120,4 +122,23 @@ module("Unit | Lib | list-banner", function () {
     );
   });
   /* eslint-enable no-script-url */
+
+  test("findBannerBySlug ignores case", function (assert) {
+    assert.strictEqual(findBannerBySlug("EVENTS", banners), banners[0]);
+    assert.strictEqual(findBannerBySlug("nope", banners), undefined);
+    assert.strictEqual(findBannerBySlug(undefined, banners), undefined);
+  });
+
+  test("thumbnailMode only returns known layouts", function (assert) {
+    assert.strictEqual(thumbnailMode({ thumbnails: "grid" }), "grid");
+    assert.strictEqual(
+      thumbnailMode({ thumbnails: "blog-style" }),
+      "blog-style"
+    );
+    assert.strictEqual(thumbnailMode({ thumbnails: "none" }), "none");
+    assert.strictEqual(thumbnailMode({ thumbnails: "default" }), undefined);
+    assert.strictEqual(thumbnailMode({ thumbnails: "bogus" }), undefined);
+    assert.strictEqual(thumbnailMode({}), undefined);
+    assert.strictEqual(thumbnailMode(undefined), undefined);
+  });
 });

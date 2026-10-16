@@ -5,15 +5,35 @@ export function isCustomListPage(url) {
   return SLUG_PATTERN.test(url || "");
 }
 
+// The `list_banners` row for a list slug, ignoring case.
+export function findBannerBySlug(slug, banners = settings.list_banners) {
+  const wanted = (slug || "").toLowerCase();
+
+  return (banners || []).find(
+    (banner) => banner.slug && banner.slug.trim().toLowerCase() === wanted
+  );
+}
+
 // Custom Topic Lists pages live at /lists/<slug>. Returns the `list_banners` row
 // whose slug matches the current URL.
 export function findBanner(url, banners = settings.list_banners) {
   const match = SLUG_PATTERN.exec(url || "");
-  const slug = match && decodeURIComponent(match[1]).toLowerCase();
+  return findBannerBySlug(match && decodeURIComponent(match[1]), banners);
+}
 
-  return (banners || []).find(
-    (banner) => banner.slug && banner.slug.trim().toLowerCase() === slug
-  );
+// Layouts understood by the Topic List Thumbnails theme. "default" leaves the
+// choice to that theme's own settings.
+const THUMBNAIL_MODES = [
+  "blog-style",
+  "grid",
+  "list",
+  "masonry",
+  "minimal-grid",
+  "none",
+];
+
+export function thumbnailMode(row) {
+  return THUMBNAIL_MODES.includes(row?.thumbnails) ? row.thumbnails : undefined;
 }
 
 // Button links may point at this site or another one. Anything that is not an

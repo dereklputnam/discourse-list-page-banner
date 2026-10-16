@@ -35,7 +35,7 @@ export default class ListPageBanner extends Component {
             <div class="list-page-banner__buttons custom-banner__buttons">
               {{#each this.banner.buttons as |button|}}
                 <a
-                  class="btn btn-default"
+                  class="btn btn-primary"
                   href={{button.url}}
                 >{{button.text}}</a>
               {{/each}}

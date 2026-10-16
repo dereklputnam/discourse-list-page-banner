@@ -17,6 +17,16 @@ list_banners:
         type: string
       hide_navigation:
         type: boolean
+      thumbnails:
+        type: enum
+        choices:
+          - default
+          - blog-style
+          - grid
+          - list
+          - masonry
+          - minimal-grid
+          - none
       buttons:
         type: objects
         schema:

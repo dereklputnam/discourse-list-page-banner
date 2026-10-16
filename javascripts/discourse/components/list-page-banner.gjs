@@ -12,18 +12,25 @@ export default class ListPageBanner extends Component {
 
   get style() {
     const color = safeColor(this.banner?.color);
-    return color ? trustHTML(`--list-page-banner-accent: ${color}`) : null;
+    return color ? trustHTML(`--category-color: ${color}`) : null;
   }
 
   <template>
     {{#if this.banner}}
-      <div class="list-page-banner" style={{this.style}}>
-        <h1 class="list-page-banner__title">{{this.banner.title}}</h1>
-        {{#if this.banner.description}}
-          <p class="list-page-banner__description">
-            {{this.banner.description}}
-          </p>
-        {{/if}}
+      {{! custom-banner classes match the category banners already on the site }}
+      <div class="list-page-banner custom-banner" style={{this.style}}>
+        <div class="list-page-banner__content custom-banner__content">
+          <div class="list-page-banner__location custom-banner__location">
+            <h1 class="list-page-banner__title custom-banner__title">
+              {{this.banner.title}}
+            </h1>
+          </div>
+          {{#if this.banner.description}}
+            <div class="list-page-banner__details custom-banner__details">
+              {{this.banner.description}}
+            </div>
+          {{/if}}
+        </div>
       </div>
     {{/if}}
   </template>

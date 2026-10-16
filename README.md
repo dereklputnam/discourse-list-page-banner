@@ -14,12 +14,12 @@ It started from [netwrix-modifications-for-solutions](https://github.com/dereklp
 
 One row per list that should show a banner.
 
-| Field        | Description                                                                                                      |
-| ------------ | ---------------------------------------------------------------------------------------------------------------- |
-| List slug    | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case. |
-| Title        | Heading shown in the banner.                                                                                     |
-| Description  | Optional text under the title.                                                                                   |
-| Accent color | Optional color of the banner's top border: a hex value like `#0073e6` or a color name. Defaults to blue.         |
+| Field        | Description                                                                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| List slug    | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case.                                  |
+| Title        | Heading shown in the banner.                                                                                                                      |
+| Description  | Optional text under the title.                                                                                                                    |
+| Accent color | Optional color of the banner's top border: a hex value like `#BF1E2E` or a color name. Defaults to the theme accent color, like category banners. |
 
 A list with a banner shows it in place of the plugin's own title header, which is hidden on that page. Lists themselves, including which topics they show, stay managed in Custom Topic Lists.
 
@@ -31,7 +31,7 @@ Hides the Custom Lists dropdown in the navigation breadcrumb everywhere except o
 
 - The banner renders in the `above-main-container` outlet and only appears when the current URL is `/lists/<slug>` for a row in `list_banners`.
 - Body classes drive the CSS: `is-custom-list-page` on any `/lists/` page and `has-list-page-banner` on pages with a banner.
-- The banner's look follows the tag page banners on the community: centered title in a padded box with a colored top border.
+- The banner mirrors the category banners: the same `custom-banner` classes and structure, with a matching fallback style, so it looks the same whether or not the category banner component is installed. The description shows in the same side box.
 
 ## Tests
 

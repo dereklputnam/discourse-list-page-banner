@@ -1,24 +1,39 @@
+// Mirrors the category banners (the custom-banner component) so a list banner
+// looks the same whether or not that component is installed.
 .list-page-banner {
-  padding: 3.75rem var(--space-6);
-  margin-bottom: var(--space-5);
-  font-family: var(--heading-font-family);
-  color: var(--primary);
-  text-align: center;
+  display: flex;
+  box-sizing: border-box;
+  min-height: 120px;
+  padding: 1em;
+  margin-block: 0 1em;
   background-color: var(--secondary);
-  border-top: 10px solid var(--list-page-banner-accent, #0073e6);
+  border: 1px solid var(--primary);
+  border-top: 8px solid var(--category-color, var(--quaternary));
   border-radius: var(--d-border-radius);
+  box-shadow: 0 0 0 1px var(--primary-low);
 
-  &__title {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.5;
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: space-between;
+    width: 100%;
   }
 
-  &__description {
-    max-width: 50rem;
-    margin: var(--space-3) auto 0;
-    font-family: var(--font-family);
-    color: var(--primary-high);
+  &__location {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+  }
+
+  &__title {
+    margin-block: 0.25em;
+  }
+
+  &__details {
+    padding: 1em;
+    background-color: var(--primary-very-low);
+    border-radius: var(--d-border-radius);
   }
 }
 

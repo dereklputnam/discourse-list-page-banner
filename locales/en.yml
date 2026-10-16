@@ -18,4 +18,4 @@ en:
               description: "Optional text under the title"
             color:
               label: "Accent color"
-              description: "Optional color of the banner's top border, as a hex value like #0073e6 or a color name. Defaults to blue."
+              description: "Optional color of the banner's top border, as a hex value like #BF1E2E or a color name. Defaults to the theme's accent color, like category banners."

@@ -1,9 +1,6 @@
 hide_custom_lists_dropdown:
   type: bool
   default: true
-hide_list_navigation:
-  type: bool
-  default: true
 list_banners:
   type: objects
   default: []
@@ -16,9 +13,7 @@ list_banners:
         required: true
         validations:
           min_length: 1
-      title:
-        type: string
-      description:
-        type: string
       color:
         type: string
+      hide_navigation:
+        type: boolean

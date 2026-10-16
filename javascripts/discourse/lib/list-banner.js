@@ -16,8 +16,8 @@ export function findBanner(url, banners = settings.list_banners) {
   );
 }
 
-// Builds what the banner shows: the row's own title and description when set,
-// otherwise the name and description of the list in Custom Topic Lists.
+// Builds what the banner shows. The title and description come from the list in
+// Custom Topic Lists; the row only adds the accent color.
 export function resolveBanner(url, banners, lists) {
   const row = findBanner(url, banners);
   if (!row) {
@@ -28,8 +28,8 @@ export function resolveBanner(url, banners, lists) {
   const list = (lists || []).find((l) => l.slug?.trim().toLowerCase() === slug);
 
   return {
-    title: row.title || list?.name || row.slug,
-    description: row.description || list?.description,
+    title: list?.name || row.slug,
+    description: list?.description,
     color: row.color,
   };
 }

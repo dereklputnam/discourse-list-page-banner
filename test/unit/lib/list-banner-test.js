@@ -56,7 +56,7 @@ module("Unit | Lib | list-banner", function () {
     assert.strictEqual(safeColor(undefined), null);
   });
 
-  test("resolveBanner falls back to the list's name and description", function (assert) {
+  test("resolveBanner reads the title and description from the list", function (assert) {
     const lists = [
       { slug: "events", name: "Events", description: "From the plugin" },
     ];
@@ -64,14 +64,6 @@ module("Unit | Lib | list-banner", function () {
     assert.deepEqual(
       resolveBanner("/lists/events", [{ slug: "events", color: "red" }], lists),
       { title: "Events", description: "From the plugin", color: "red" }
-    );
-    assert.deepEqual(
-      resolveBanner(
-        "/lists/events",
-        [{ slug: "events", title: "Mine", description: "Own" }],
-        lists
-      ),
-      { title: "Mine", description: "Own", color: undefined }
     );
     assert.strictEqual(resolveBanner("/lists/events", [], lists), undefined);
     assert.strictEqual(

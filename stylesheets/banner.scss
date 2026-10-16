@@ -1,0 +1,28 @@
+.list-page-banner {
+  padding: 3.75rem var(--space-6);
+  margin-bottom: var(--space-5);
+  font-family: var(--heading-font-family);
+  color: var(--primary);
+  text-align: center;
+  background-color: var(--secondary);
+  border-top: 10px solid var(--list-page-banner-accent, #0073e6);
+  border-radius: var(--d-border-radius);
+
+  &__title {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+
+  &__description {
+    max-width: 50rem;
+    margin: var(--space-3) auto 0;
+    font-family: var(--font-family);
+    color: var(--primary-high);
+  }
+}
+
+// A list with a banner shows it in place of the plugin's own title header
+.has-list-page-banner .category-title-header {
+  display: none;
+}

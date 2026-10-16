@@ -1,8 +1,2 @@
-// STAGING APPROACH: Minimal CSS - complex rules moved to solution-header.scss
-
-// Ensure Solutions dropdown remains visible with higher specificity
-.category-breadcrumb .custom-list-dropdown,
-.category-breadcrumb li:has(.custom-list-dropdown) {
-  display: inline-block !important;
-  visibility: visible !important;
-}
+@import "../stylesheets/banner";
+@import "../stylesheets/dropdown";

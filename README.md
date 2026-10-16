@@ -1,107 +1,42 @@
-# Netwrix - Modifications for Solutions
+# List Page Banner
 
-A Discourse theme component that provides custom styling and functionality for Netwrix solution pages when used with the [Custom Topic Lists plugin](https://github.com/discourse/discourse-custom-topic-lists).
+A Discourse theme component that adds a banner to pages created with [Discourse Custom Topic Lists](https://meta.discourse.org/t/discourse-custom-topic-lists/311186), and can hide the Custom Lists dropdown everywhere else.
 
-## Features
-
-- **Custom Solution Pages**: Styled headers and layouts for solution categories
-- **Subscribe Functionality**: One-click subscription to all news and security advisories for each solution
-- **Responsive Design**: Mobile-friendly with responsive line breaks
-- **Navigation Cleanup**: Hides unnecessary navigation elements on solution pages
-- **Plugin Integration**: Works with Discourse Custom Topic Lists plugin or standalone theme settings
-
-## Prerequisites
-
-### Required Plugin Installation
-
-1. **Install Custom Topic Lists Plugin**:
-   ```
-   cd /var/discourse
-   ./launcher enter app
-   git clone https://github.com/discourse/discourse-custom-topic-lists.git plugins/discourse-custom-topic-lists
-   exit
-   ./launcher rebuild app
-   ```
-
-2. **Enable the Plugin**:
-   - Go to Admin → Settings → Plugins
-   - Find "Custom Topic Lists" and enable it
-   - Enable the site setting `discourse_custom_topic_lists_enabled`
-
-## Installation
-
-1. Go to your Discourse Admin Panel
-2. Navigate to **Customize** → **Themes**
-3. Click **Install** → **From a Git repository**
-4. Enter: `https://github.com/dereklputnam/netwrix-modifications-for-solutions`
-5. Click **Install**
-
-## Configuration
-
-### Method 1: Plugin Configuration (Recommended)
-
-Configure your solutions in the Custom Topic Lists plugin settings:
-
-1. Go to **Admin** → **Settings** → **Plugins**
-2. Find **Custom Topic Lists** settings
-3. Configure `custom_topic_lists` with your solution data:
-
-```json
-[
-  {
-    "slug": "directory-management",
-    "name": "Directory Management",
-    "title": "Directory Management", 
-    "subtitle": "Netwrix Directory Management",
-    "description": "Stay informed with the latest updates and security alerts for Auditor, Directory Manager, and Password Policy Enforcer.",
-    "query": "category:90,110,118",
-    "level_4_categories": "90,110,118",
-    "level_3_categories": "195,204,210"
-  }
-]
-```
-
-### Method 2: Theme Settings (Fallback)
-
-If not using the plugin, configure in theme settings:
-
-1. Go to **Customize** → **Themes** → **Netwrix - Modifications for Solutions**
-2. Click **Settings**
-3. Update the `netwrix_solutions` setting with your solution data
-
-## URL Structure
-
-Solutions will be accessible at:
-- `/lists/directory-management`
-- `/lists/endpoint-management`
-- `/lists/identity-management`
-- etc.
-
-## Default Solutions Included
-
-1. **Directory Management** - Auditor, Directory Manager, Password Policy Enforcer
-2. **Endpoint Management** - Endpoint Protector, Endpoint Policy Manager, Change Tracker  
-3. **Identity Management** - Identity Manager, Directory Manager, Password Policy Enforcer
-4. **ITDR** - PingCastle, Access Analyzer, Threat Manager, Threat Prevention, Recovery for AD
-5. **Privileged Access Management** - Privilege Secure, Endpoint Privilege Manager, Password Secure
-6. **DSPM** - Auditor, Access Analyzer, Data Classification, Endpoint Protector
+It started from [netwrix-modifications-for-solutions](https://github.com/dereklputnam/netwrix-modifications-for-solutions), which patched the page with scripts. This version renders the banner as a real component and uses CSS for the rest.
 
 ## Requirements
 
-- Discourse 3.0.0 or higher
-- [Custom Topic Lists plugin](https://github.com/discourse/discourse-custom-topic-lists) (recommended)
+- Custom Topic Lists, which creates the `/lists/<slug>` pages.
 
-## Troubleshooting
+## Settings
 
-- Ensure Custom Topic Lists plugin is installed and enabled
-- Check that solutions are configured with matching slugs
-- Verify category IDs are correct for your Discourse instance
-- Enable admin/development logging for debugging
+### `list_banners`
+
+One row per list that should show a banner.
+
+| Field        | Description                                                                                                      |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| List slug    | The slug as set in Custom Topic Lists, for example `events` for `/lists/events`. Matched exactly, ignoring case. |
+| Title        | Heading shown in the banner.                                                                                     |
+| Description  | Optional text under the title.                                                                                   |
+| Accent color | Optional color of the banner's top border: a hex value like `#0073e6` or a color name. Defaults to blue.         |
+
+A list with a banner shows it in place of the plugin's own title header, which is hidden on that page. Lists themselves, including which topics they show, stay managed in Custom Topic Lists.
+
+### `hide_custom_lists_dropdown`
+
+Hides the Custom Lists dropdown in the navigation breadcrumb everywhere except on list pages. On by default.
+
+## How it works
+
+- The banner renders in the `above-main-container-outlet` and only appears when the current URL is `/lists/<slug>` for a row in `list_banners`.
+- Body classes drive the CSS: `is-custom-list-page` on any `/lists/` page and `has-list-page-banner` on pages with a banner.
+- The banner's look follows the tag page banners on the community: centered title in a padded box with a colored top border.
+
+## Tests
+
+`test/unit/lib/list-banner-test.js` covers URL and slug matching and the color check. It runs as part of the theme's QUnit suite.
 
 ## License
 
-This theme component is licensed under the MIT License.
-
-## Version
-
-Current version: 1.1.0
+MIT. See [LICENSE](LICENSE).

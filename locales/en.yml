@@ -1,6 +1,21 @@
 en:
   theme_metadata:
-    description: Custom modifications built on the Custom Topic Lists TC, to build
-      the Solution pages
+    description: Adds a banner to pages created with Discourse Custom Topic Lists and can hide the Custom Lists dropdown elsewhere
     settings:
-      example_setting: A description of a setting.
+      hide_custom_lists_dropdown: "Hide the Custom Lists dropdown in the navigation breadcrumb everywhere except on list pages (/lists/...)."
+      list_banners:
+        description: "Lists themselves are created and managed with Discourse Custom Topic Lists (https://meta.discourse.org/t/discourse-custom-topic-lists/311186). Add a row for each list that should show a banner. A list with a banner shows it in place of the plugin's own title header."
+        schema:
+          properties:
+            slug:
+              label: "List slug"
+              description: "The slug of the list as set in Custom Topic Lists, e.g. events for /lists/events"
+            title:
+              label: "Title"
+              description: "Heading shown in the banner"
+            description:
+              label: "Description"
+              description: "Optional text under the title"
+            color:
+              label: "Accent color"
+              description: "Optional color of the banner's top border, as a hex value like #0073e6 or a color name. Defaults to blue."

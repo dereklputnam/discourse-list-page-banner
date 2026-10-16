@@ -1,0 +1,6 @@
+// The Custom Lists dropdown only belongs on the list pages themselves
+.hides-custom-lists-dropdown:not(.is-custom-list-page) {
+  .category-breadcrumb li.custom-list-item {
+    display: none;
+  }
+}
